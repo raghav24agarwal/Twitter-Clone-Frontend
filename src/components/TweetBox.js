@@ -11,6 +11,7 @@ function TweetBox(props) {
   // const uname = useSelector(selectUser)
   const fname = useSelector((state) => state.fullname);
   const uname = useSelector((state) => state.username);
+  const display = useSelector((state) => state.display);
 
   const axios = require('axios');
 
@@ -30,7 +31,9 @@ function TweetBox(props) {
     const payload = {
         tweet: tweetMessage,
         username: uname,
-        fullname: fname
+        fullname: fname,
+        avatar: display,
+        image: tweetImage
     }
 
     axios('http://127.0.0.1:8000/tweets/',{
@@ -60,7 +63,7 @@ function TweetBox(props) {
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src="https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png" />
+          <Avatar src={display} />
           <input
             onChange={(e) => setTweetMessage(e.target.value)}
             value={tweetMessage}

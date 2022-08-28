@@ -8,6 +8,7 @@ import './Register.css';
 function Register() {
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
+  const [display, setDisplay] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -40,7 +41,8 @@ function Register() {
 
           dispatch(userActions.userDetails({
             username: username,
-            fullname: fullname
+            fullname: fullname,
+            display: display
           }))
           
         })
@@ -93,6 +95,18 @@ function Register() {
                   name="fullname"
                   onChange={(e) => setFullname(e.target.value)}
                   placeholder="Fullname"
+                />
+              </div>
+
+              <div className="register-input_text">
+                <input
+                  className="register-input"
+                  type="text"
+                  value={display}
+                  name="username"
+                  onChange={(e) => setDisplay(e.target.value)}
+                  placeholder="Display pic link (Optional)"
+                  required
                 />
               </div>
 

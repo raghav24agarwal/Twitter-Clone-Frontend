@@ -2,7 +2,8 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialUserState = {
     username: '',
-    fullname: ''
+    fullname: '',
+    display: ''
 };
 
 const userSlice = createSlice({
@@ -11,7 +12,8 @@ const userSlice = createSlice({
     reducers: {
         userDetails : (state, action) => {
             state.username = action.payload.username;
-            state.fullname = action.payload.fullname
+            state.fullname = action.payload.fullname;
+            state.display = action.payload.display;
 
             console.log("Inside Store")
             console.log(state.username)
