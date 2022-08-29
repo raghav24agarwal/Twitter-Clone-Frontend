@@ -11,9 +11,9 @@ const userSlice = createSlice({
     initialState: initialUserState,
     reducers: {
         userDetails : (state, action) => {
-            state.username = action.payload.username;
-            state.fullname = action.payload.fullname;
-            state.display = action.payload.display;
+            state.username = action.payload['username'];
+            state.fullname = action.payload['fullname']
+            state.display = action.payload['display'];
 
             console.log("Inside Store")
             console.log(state.username)

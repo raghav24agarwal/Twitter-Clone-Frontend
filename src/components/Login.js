@@ -1,5 +1,7 @@
 import React , { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { userActions } from '../store/index';
 import axios from 'axios';
 import "./Login.css";
 
@@ -10,7 +12,7 @@ function Login() {
     const [error, setError] = useState(false);
 
     let navigate = useNavigate();
-    
+    const dispatch = useDispatch()
 
     const logIn = e => {
         e.preventDefault();
@@ -33,8 +35,16 @@ function Login() {
           })
           .then((res) => {
             console.log(res)
+            let uname = res.data['username']
+            console.log(uname)
             let path = '/dashboard'; 
             navigate(path);
+
+            dispatch(userActions.userDetails({
+              'username': res.data['username'],
+              'fullname': res.data['fullname'],
+              'display': res.data['avatar']
+            }))
             
           }).catch((err) => {
             alert("Incorrect username or password")

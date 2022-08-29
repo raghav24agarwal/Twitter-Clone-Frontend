@@ -28,35 +28,43 @@ function TweetBox(props) {
     //     "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
     // });
 
-    const payload = {
-        tweet: tweetMessage,
-        username: uname,
-        fullname: fname,
-        avatar: display,
-        image: tweetImage
-    }
+    if (tweetMessage === "") {
+      alert("Please enter the tweet")
+    } 
 
-    axios('http://127.0.0.1:8000/tweets/',{
-      method:'POST',
-      data:payload,
-    })
-    .then((res) => {
-        console.log("Inside TweetBox")
-        console.log(res)
-        props.onTweet(payload);
+    else {
+
+      const payload = {
+          tweet: tweetMessage,
+          username: uname,
+          fullname: fname,
+          avatar: display,
+          image: tweetImage
+      }
+
+      axios('http://127.0.0.1:8000/tweets/',{
+        method:'POST',
+        data:payload,
+      })
+      .then((res) => {
+          console.log("Inside TweetBox")
+          console.log(res)
+          props.onTweet(payload);
+          
         
-      
-    }).catch((err) => {
-      alert("Server Error")
-    })
+      }).catch((err) => {
+        alert("Server Error")
+      })
 
-    console.log("STore data")
-        console.log(uname)
-        console.log(fname)
-        console.log(payload)
+      console.log("STore data")
+          console.log(uname)
+          console.log(fname)
+          console.log(payload)
 
-    setTweetMessage("");
-    setTweetImage("");
+      setTweetMessage("");
+      setTweetImage("");
+
+    }
   };
 
   return (

@@ -40,9 +40,9 @@ function Register() {
           navigate(path);
 
           dispatch(userActions.userDetails({
-            username: username,
-            fullname: fullname,
-            display: display
+            'username': username,
+            'fullname': fullname,
+            'display': display
           }))
           
         })
