@@ -1,4 +1,7 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import thunk from 'redux-thunk';
 
 const initialUserState = {
     username: '',
@@ -23,14 +26,23 @@ const userSlice = createSlice({
     }
 })
 
+const persistConfig = {
+    key: 'root',
+    storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, userSlice.reducer)
 
 
 const store = configureStore({
-    reducer: userSlice.reducer
+    reducer: persistedReducer,
+    middleware: [thunk]
 })
 
 export const userActions = userSlice.actions;
 
-export const selectUser = (state) => state.user;
+export const persistor = persistStore(store)
+
+// export const selectUser = (state) => state.user;
 
 export default store
