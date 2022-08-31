@@ -22,6 +22,13 @@ const userSlice = createSlice({
             console.log(state.username)
             console.log(state.fullname)
             console.log(action.payload)
+        },
+
+        logout : (state) => {
+            state = initialUserState;
+            console.log("logout")
+            console.log(state)
+            storage.removeItem('persist:root')
         }
     }
 })

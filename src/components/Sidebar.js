@@ -11,8 +11,20 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../store/index';
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 function Sidebar() {
+
+  const dispatch = useDispatch()
+
+  const logout = (e) => {
+    console.log("logout")
+    dispatch(userActions.logout());
+    window.location.reload();
+  }
+
   return (
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />
@@ -27,8 +39,8 @@ function Sidebar() {
       <SidebarOption Icon={MoreHorizIcon} text="More" />
 
       {/* Button -> Tweet */}
-      <Button variant="outlined" className="sidebar__tweet" fullWidth>
-        Tweet
+      <Button variant="outlined" className="sidebar__tweet" fullWidth onClick={logout}>
+        Logout
       </Button>
     </div>
   );
