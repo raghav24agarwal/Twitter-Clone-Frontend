@@ -3,9 +3,11 @@ import TweetBox from "./TweetBox";
 import Post from "./Post";
 import "./Feed.css";
 import FlipMove from "react-flip-move";
+import SearchIcon from '@mui/icons-material/Search';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
+  const [duplicate, setDuplicate] = useState([]);
   const axios = require('axios');
 
 //   useEffect(() => {
@@ -19,6 +21,7 @@ function Feed() {
         axios.get('http://127.0.0.1:8000/tweets/').then(resp => {
         let reversedData = resp.data.reverse()
         setPosts([...reversedData])
+        setDuplicate([...reversedData])
         console.log(posts)
 
         }).catch((err) => {
@@ -31,6 +34,7 @@ function Feed() {
         enteredTweet
       };
       setPosts([enteredTweet, ...posts]);
+      setDuplicate([enteredTweet, ...posts])
       console.log("inside feed")
       console.log("tweetdata")
       console.log(tweetData)
@@ -38,13 +42,38 @@ function Feed() {
       console.log(posts)
     }
 
+    const searchText = (e) => {
+      if (e.code === "Enter") { 
+          // alert("Searching")
+
+          const payload = {
+            searchText: e.target.value
+          }
+          axios.post('http://127.0.0.1:8000/tweets/search/',payload)
+        .then((res) => {
+          console.log(res)
+          let reversedData = res.data.reverse()
+        setPosts([...reversedData])
+        })
+      
+      }
+
+      if (e.target.value.length === 1 && e.code === "Backspace") {
+        setPosts(duplicate)
+      }
+    }
+
   return (
     <div className="feed">
       <div className="feed__header">
-        <h2>Home</h2>
+        {/* <h2>Home</h2> */}
+        <div className="feed__searchBox">
+          <SearchIcon className="widgets__searchIcon" />
+          <input placeholder="Search Twitter" type="text" onKeyDown={searchText}/>
+        </div>
       </div>
-
       <TweetBox onTweet={saveTweet}/>
+
 
       <FlipMove>
         {posts.map((post) => (

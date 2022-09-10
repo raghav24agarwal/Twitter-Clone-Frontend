@@ -11,7 +11,10 @@
   }
   
   .post__body > img {
-    border-radius: 20px;
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+    /* border-radius: 20px; */
   }
   
   .post__footer {

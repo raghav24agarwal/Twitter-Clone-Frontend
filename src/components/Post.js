@@ -9,10 +9,13 @@ import PublishIcon from '@mui/icons-material/Publish';
 
 const Post = forwardRef(
   ({ displayName, username, verified, text, image, avatar }, ref) => {
+
+    let first = displayName.charAt(0).toUpperCase();
     return (
       <div className="post" ref={ref}>
         <div className="post__avatar">
-          <Avatar src={avatar} />
+        {avatar ? <Avatar src={avatar} /> : <Avatar>{first}</Avatar>}
+          
         </div>
         <div className="post__body">
           <div className="post__header">
@@ -29,7 +32,7 @@ const Post = forwardRef(
               <p>{text}</p>
             </div>
           </div>
-          <img src={image} alt="" />
+          {image && <img src={image} alt="" />}
           <div className="post__footer">
             <ChatBubbleOutlineIcon fontSize="small" />
             <RepeatIcon fontSize="small" />

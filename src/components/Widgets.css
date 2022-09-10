@@ -5,21 +5,28 @@
   .widgets__input {
     display: flex;
     align-items: center;
-    background-color: var(--twitter-background);
-    padding: 10px;
+    background-color: var(--twitter-color);
+    /* padding: 10px; */
+    padding-left: 10px;
     border-radius: 20px;
     margin-top: 10px;
     margin-left: 20px;
+    color: white;
+    font-weight: 900 !important;
+    text-transform: inherit !important;
   }
   
-  .widgets__input > input {
+  .widgets__input > p {
     border: none;
     outline: none;
-    background-color: var(--twitter-background);
+    padding-left: 10px;
+    /* padding: 10px; */
+    /* background-color: var(--twitter-color); */
   }
   
   .widgets__searchIcon {
-    color: gray;
+    /* color: gray; */
+     color: black;
   }
   
   .widgets__widgetContainer {

@@ -67,11 +67,14 @@ function TweetBox(props) {
     }
   };
 
+  let first = fname.charAt(0).toUpperCase();
+
   return (
     <div className="tweetBox">
       <form>
         <div className="tweetBox__input">
-          <Avatar src={display} />
+          {/* <Avatar src={display} /> */}
+          {display ? <Avatar src={display} /> : <Avatar>{first}</Avatar>}
           <input
             onChange={(e) => setTweetMessage(e.target.value)}
             value={tweetMessage}
