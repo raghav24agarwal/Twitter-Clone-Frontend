@@ -16,7 +16,6 @@ function Login() {
 
     const logIn = e => {
         e.preventDefault();
-        console.log("log in")
 
         if (username === '' || password === '') {
           setError(true);
@@ -34,9 +33,7 @@ function Login() {
             data:payload,
           })
           .then((res) => {
-            console.log(res)
-            let uname = res.data['username']
-            console.log(uname)
+            // console.log(res)
             let path = '/dashboard'; 
             navigate(path);
 

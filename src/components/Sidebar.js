@@ -20,7 +20,6 @@ function Sidebar() {
   const dispatch = useDispatch()
 
   const logout = (e) => {
-    console.log("logout")
     dispatch(userActions.logout());
     window.location.reload();
   }

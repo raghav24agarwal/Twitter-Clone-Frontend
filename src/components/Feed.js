@@ -10,19 +10,12 @@ function Feed() {
   const [duplicate, setDuplicate] = useState([]);
   const axios = require('axios');
 
-//   useEffect(() => {
-//     db.collection("posts").onSnapshot((snapshot) =>
-//       setPosts(snapshot.docs.map((doc) => doc.data()))
-//     );
-//   }, []);
-    let temp;
-
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/tweets/').then(resp => {
         let reversedData = resp.data.reverse()
         setPosts([...reversedData])
         setDuplicate([...reversedData])
-        console.log(posts)
+        // console.log(posts)
 
         }).catch((err) => {
           alert("Server Error, Please try again!")
@@ -30,30 +23,28 @@ function Feed() {
     }, []);
 
     const saveTweet = (enteredTweet) => {
-      const tweetData = {
-        enteredTweet
-      };
+      // const tweetData = {
+      //   enteredTweet
+      // };
       setPosts([enteredTweet, ...posts]);
       setDuplicate([enteredTweet, ...posts])
-      console.log("inside feed")
-      console.log("tweetdata")
-      console.log(tweetData)
-      console.log("posts")
-      console.log(posts)
+      // console.log("tweetdata")
+      // console.log(tweetData)
+      // console.log("posts")
+      // console.log(posts)
     }
 
     const searchText = (e) => {
       if (e.code === "Enter") { 
-          // alert("Searching")
 
           const payload = {
             searchText: e.target.value
           }
           axios.post('http://127.0.0.1:8000/tweets/search/',payload)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           let reversedData = res.data.reverse()
-        setPosts([...reversedData])
+          setPosts([...reversedData])
         })
       
       }

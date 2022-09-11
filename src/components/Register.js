@@ -19,7 +19,6 @@ function Register() {
 
   const signIn = e => {
     e.preventDefault();
-    console.log("sig in")
 
     if (username === '' || fullname === '' || email === '' || password === '') {
       setError(true);
@@ -30,12 +29,13 @@ function Register() {
           username: username,
           fullname: fullname,
           email: email,
-          password: password
+          password: password,
+          avatar: display
         }
 
         axios.post('http://127.0.0.1:8000/signup/',payload)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           let path = '/login'; 
           navigate(path);
 
